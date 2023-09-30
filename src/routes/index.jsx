@@ -1,13 +1,13 @@
 import { createBrowserRouter } from "react-router-dom";
-import ProtectedRoute from "./ProtectedRoutes";
-import App from "../components/App";
-import Login from "../components/login";
 import Register from "../components/register";
+import Login from "../components/login";
+import { Error, Root } from "../pages/home";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <Root />,
+    errorElement: <Error />,
   },
   {
     path: "/login",
@@ -16,14 +16,6 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <Register />,
-  },
-  {
-    path: "/to",
-    element: (
-      <ProtectedRoute>
-        <App />
-      </ProtectedRoute>
-    ),
   },
 ]);
 
