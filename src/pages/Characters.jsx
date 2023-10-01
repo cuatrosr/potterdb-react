@@ -27,7 +27,7 @@ function Characters() {
         <Character
           onSelected={childToParent}
           img={character.attributes.image}
-          key={character.id}
+          id={character.id}
           attributes={character.attributes}
         />
       </Grid>
