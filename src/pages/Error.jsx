@@ -1,5 +1,5 @@
 import { Grid } from "@mui/material";
-import NotFound from "../../components/root/NotFound";
+import NotFound from "../components/root/NotFound";
 
 const error = () => {
   return (

@@ -1,21 +1,28 @@
 import { createBrowserRouter } from "react-router-dom";
-import Register from "../components/register";
-import Login from "../components/login";
-import { Error, Root } from "../pages/home";
+import { Error, Login, Root, SignIn, Characters } from "../pages";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
     errorElement: <Error />,
+    children: [
+      {
+        path: "characters",
+        element: <Characters />,
+      },
+      {
+        path: "potions",
+      },
+    ],
   },
   {
     path: "/login",
     element: <Login />,
   },
   {
-    path: "/register",
-    element: <Register />,
+    path: "/signin",
+    element: <SignIn />,
   },
 ]);
 
