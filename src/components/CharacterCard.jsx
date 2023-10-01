@@ -11,9 +11,16 @@ import Swal from "sweetalert2";
 import PropTypes from "prop-types";
 import { storage } from "../configs/firebaseConfig";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-function Characters(props) {
+function CharacterCard(props) {
+  const user = useSelector((state) => state.auth.value)
+  const navigate = useNavigate();
   const changeImage = async () => {
+    if (!user) {
+      return navigate("/login");
+    }
     const { value: file } = await Swal.fire({
       title: "Select image",
       input: "file",
@@ -91,11 +98,11 @@ function Characters(props) {
   );
 }
 
-Characters.propTypes = {
+CharacterCard.propTypes = {
   attributes: PropTypes.object,
   img: PropTypes.string,
   id: PropTypes.string,
   onSelected: PropTypes.func,
 };
 
-export default Characters;
+export default CharacterCard;

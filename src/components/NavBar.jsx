@@ -10,10 +10,10 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import Logo from "../../assets/logo.svg?react";
+import Logo from "../assets/logo.svg?react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { saveUser } from "../../redux/slices/authSlice";
+import { saveUser } from "../redux/slices/authSlice";
 import { useState } from "react";
 
 function NavBar() {
@@ -50,6 +50,15 @@ function NavBar() {
             Potter
           </Typography>
           <Grid component="div">
+            {user ? (
+              <Typography
+                variant="h8"
+                component="div"
+                sx={{ p: 1, flexGrow: 1 }}
+              >
+                ¡Hola {user.email}!
+              </Typography>
+            ) : null}
             <IconButton
               size="large"
               aria-label="account of current user"

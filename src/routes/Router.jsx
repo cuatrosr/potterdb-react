@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import { Error, Login, Root, SignIn, Characters } from "../pages";
+import { Error, Login, Root, SignIn, Characters, Potions, Books } from "../pages";
 
 const router = createBrowserRouter([
   {
@@ -13,7 +13,12 @@ const router = createBrowserRouter([
       },
       {
         path: "potions",
+        element: <Potions />
       },
+      {
+        path: "books",
+        element: <Books />
+      }
     ],
   },
   {

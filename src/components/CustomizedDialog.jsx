@@ -20,6 +20,11 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 }));
 
 function CustomizedDialog(props) {
+  const name = props.attributes
+    ? props.attributes.name
+      ? props.attributes.name
+      : props.attributes.title
+    : "";
   const keys = props.attributes ? Object.keys(props.attributes) : undefined;
   return (
     <>
@@ -29,7 +34,7 @@ function CustomizedDialog(props) {
         open={props.open}
       >
         <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
-          {props.attributes ? props.attributes.name : ""}
+          {name}
         </DialogTitle>
         <IconButton
           aria-label="close"

@@ -1,10 +1,10 @@
-import {CharacterCard, CustomizedDialog} from "../components";
+import {DetailedCard, CustomizedDialog} from "../components";
+import { Grid, Skeleton } from "@mui/material";
 import { useState, useEffect } from "react";
 import axios from "../configs/axiosConfig";
-import { Grid, Skeleton } from "@mui/material";
 
-function Characters() {
-  const [characters, setCharacters] = useState([]);
+function Potions() {
+  const [potions, setPotions] = useState([]);
   const [selected, setSelected] = useState();
   const [open, setOpen] = useState(false);
   const childToParent = (childData) => {
@@ -12,22 +12,23 @@ function Characters() {
     setOpen(true);
   };
   const skeletonArray = [1, 2, 3, 4];
-  const getPersons = async () => {
+  const getPotions = async () => {
     try {
-      const response = await axios.get("/v1/characters");
-      setCharacters(response.data.data);
+      const response = await axios.get("/v1/potions");
+      setPotions(response.data.data);
     } catch (e) {
       console.log(e);
     }
   };
-  const renderCharacters = () => {
-    return characters.map((character) => (
-      <Grid item xs={12} sm={6} md={4} lg={3} key={character.id}>
-        <CharacterCard
+  const renderPotions = () => {
+    return potions.map((potion) => (
+      <Grid item xs={12} sm={6} md={4} lg={3} key={potion.id}>
+        <DetailedCard
           onSelected={childToParent}
-          img={character.attributes.image}
-          id={character.id}
-          attributes={character.attributes}
+          img={potion.attributes.image}
+          name={potion.attributes.name}
+          id={potion.id}
+          attributes={potion.attributes}
         />
       </Grid>
     ));
@@ -44,7 +45,7 @@ function Characters() {
     ));
   };
   useEffect(() => {
-    getPersons();
+    getPotions();
   }, []);
   return (
     <Grid container spacing={2}>
@@ -53,9 +54,9 @@ function Characters() {
         open={open}
         onClose={() => setOpen(false)}
       />
-      {characters.length !== 0 ? renderCharacters() : renderSkeletons()}
+      {potions.length !== 0 ? renderPotions() : renderSkeletons()}
     </Grid>
   );
 }
 
-export default Characters;
+export default Potions;

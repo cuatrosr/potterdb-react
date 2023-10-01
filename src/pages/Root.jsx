@@ -1,6 +1,6 @@
 import { Box, Grid, SvgIcon, Tab, Tabs, Typography } from "@mui/material";
 import { Outlet } from "react-router-dom";
-import { NavBar } from "../components/root";
+import { NavBar } from "../components";
 import Logo from "../assets/harry-potter-heart.svg?react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
