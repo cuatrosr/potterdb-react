@@ -8,7 +8,7 @@ function Copyright(props) {
       align="center"
       {...props}
     >
-      {"Copyright © DMT - GSB"}        
+      {"Copyright © DMT - GSB "}        
       {new Date().getFullYear()}
       {"."}
     </Typography>
