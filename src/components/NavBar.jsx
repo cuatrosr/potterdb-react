@@ -49,11 +49,11 @@ function NavBar() {
           <Typography variant="h6" component="div" sx={{ p: 1, flexGrow: 1 }}>
             Potter
           </Typography>
-          <Grid component="div">
+          <Grid component="div" display="flex" alignItems="center">
             {user ? (
               <Typography
                 variant="h8"
-                component="div"
+                component="p"
                 sx={{ p: 1, flexGrow: 1 }}
               >
                 ¡Hola {user.email}!

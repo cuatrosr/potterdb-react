@@ -1,5 +1,7 @@
+import { Link } from "react-router-dom";
 import { SignUpForm, Copyright } from "../components";
-import { Grid, Paper } from "@mui/material";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import { Avatar, Box, Grid, Paper, Typography } from "@mui/material";
 
 const SignUp = () => {
   return (
@@ -22,8 +24,31 @@ const SignUp = () => {
         }}
       />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-        <SignUpForm />
-        <Copyright sx={{ mt: 5 }} />
+        <Box
+          sx={{
+            my: 8,
+            mx: 4,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Registrarse
+          </Typography>
+          <SignUpForm />
+          <Grid container>
+            <Grid item>
+              <Link to="/login" variant="body2">
+                {"Ya tienes una cuenta? Inicia Sesion"}
+              </Link>
+            </Grid>
+          </Grid>
+          <Copyright sx={{ mt: 5 }} />
+        </Box>
       </Grid>
     </Grid>
   );

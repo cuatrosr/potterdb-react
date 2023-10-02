@@ -15,18 +15,18 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 function CharacterCard(props) {
-  const user = useSelector((state) => state.auth.value)
+  const user = useSelector((state) => state.auth.value);
   const navigate = useNavigate();
   const changeImage = async () => {
     if (!user) {
       return navigate("/login");
     }
     const { value: file } = await Swal.fire({
-      title: "Select image",
+      title: "Selecciona una Imagen",
       input: "file",
       inputAttributes: {
         accept: "image/*",
-        "aria-label": "Upload your profile picture",
+        "aria-label": "Sube tu foto de perfil",
       },
     });
     if (file) {
@@ -38,9 +38,9 @@ function CharacterCard(props) {
             getDownloadURL(snap.ref).then((url) => console.log(url));
           });
           Swal.fire({
-            title: "Your uploaded picture",
+            title: "Tu foto subida",
             imageUrl: e.target.result,
-            imageAlt: "The uploaded picture",
+            imageAlt: "La foto subida",
           });
         } catch (error) {
           console.error(error);

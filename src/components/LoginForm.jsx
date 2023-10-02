@@ -1,40 +1,29 @@
-import { Box, Button, TextField } from "@mui/material";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { saveUser } from "../redux/slices/authSlice";
 import { auth } from "../configs/firebaseConfig";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
+import { Box, Button, TextField } from "@mui/material";
 
-function SignUpForm() {
+function LoginForm() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    createUserWithEmailAndPassword(
-      auth,
-      data.get("email"),
-      data.get("password")
-    )
+    signInWithEmailAndPassword(auth, data.get("email"), data.get("password"))
       .then(async (userCredential) => {
         const user = userCredential.user;
-        let timerInterval;
-        await Swal.fire({
-          icon: "success",
-          title: "Listo",
-          text: `Usuario ${user.email} creado`,
-          timer: 2000,
-          timerProgressBar: true,
-          willClose: () => {
-            clearInterval(timerInterval);
-          },
-        });
-        navigate("/login");
+        dispatch(saveUser(user));
+        navigate("/");
       })
       .catch(async () => {
         let timerInterval;
         await Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "No se pudo registrar",
+          text: "Acceso denegado",
           timer: 2000,
           timerProgressBar: true,
           willClose: () => {
@@ -77,10 +66,10 @@ function SignUpForm() {
         variant="contained"
         sx={{ mt: 3, mb: 2 }}
       >
-        Registrar
+        Iniciar Sesion
       </Button>
     </Box>
   );
 }
 
-export default SignUpForm;
+export default LoginForm;
