@@ -73,7 +73,7 @@ function CharacterCard(props) {
             <CardMedia
               component="img"
               height="140"
-              image="src/assets/insert-image.svg"
+              src="/assets/insert-image.svg"
               sx={{ objectFit: "fill" }}
             />
           )}
